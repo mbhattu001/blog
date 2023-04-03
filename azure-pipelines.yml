@@ -1,6 +1,6 @@
 variables:
 - name: imageName
-  value: 'aughsint'
+  value: 'blog'
 stages:
 - stage: __default
   jobs:
