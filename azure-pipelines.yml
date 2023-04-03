@@ -1,0 +1,18 @@
+variables:
+- name: imageName
+  value: 'aughsint'
+stages:
+- stage: __default
+  jobs:
+  - job: Job
+    pool:
+      name: ZSEIAACCLVD002-SHP
+    steps:
+    - task: CmdLine@2
+      env:
+        pswd: $(dockerPassword)
+      inputs:
+        script: |
+          docker build -f Dockerfile -t $(dockerId).azurecr.io/$(imageName) .
+          docker login -u $(user) -p $pswd $(dockerid).azurecr.io
+          docker push $(dockerId).azurecr.io/$(imageName)
